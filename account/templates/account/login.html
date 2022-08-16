@@ -1,0 +1,85 @@
+{% extends 'base.html' %} 
+{% block title %} Login To Dashboard {% endblock title %}
+{% load static %} 
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<style>
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+
+
+
+
+
+
+
+
+<div class="packer" style="padding-top: 120px;   background-image: linear-gradient(
+  to bottom,  
+ lawngreen, 
+red) ; padding-bottom: 120px;">
+  
+
+  
+     
+     <main> {% if messages %}
+      {% for msg in messages %}
+      <div class="alert alert-{{msg.tags}}">{{msg}}</div>
+      {% endfor %}
+      {% endif %}</main>
+  <div class="form_holder">
+     
+      <form action="" method="POST">
+          {% for message in messages %}
+          <p style="color: white;">{{message}}</p>
+          {% endfor %}
+          <!-- {% csrf_token %}
+          {{form.username.label}}
+          {{form.username}}
+          {{form.password1.label}}
+          {{form.password1}} -->
+          <div class="form">
+              {% csrf_token %}
+          <div class="text">
+              <div>Username</div>
+          </div>
+          <div class="input_ban" style="display: flex;">
+              <i class="fa fa-user"></i>
+          <input type="text" name="username" id="" required>
+      </div>
+         <div class="text">
+             <div>Password</div>
+         </div>
+         <div class="input_ban" style="display: flex;">
+             <i class="fa fa-key"></i>
+          <input type="password" name="password" required>
+      </div>
+          <button type="submit">Login</button>
+        
+          
+          
+          </div>
+          <div class="next">
+              <p>Yet to own an account</p>
+              <a href="{% url 'register' %}">Sign Up</a>
+             </div>
+      </form>
+     
+  </div>
+  
+   
+</div>
+{% endblock content %}

@@ -1,0 +1,99 @@
+{% extends 'base.html' %} 
+{% block title %} Sign Up For An Account {% endblock title %}
+{% load static %} 
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="packer" style="padding-top: 120px; padding-bottom: 120px;  background-image: linear-gradient(
+  to bottom,  
+ lawngreen, 
+ red) ; 
+ ">
+ 
+      
+      <div class="form_holder">
+          <form action="" method="POST">
+              {% csrf_token %}
+              {% for message in messages %}
+              <p style="color: white;">{{message}}</p>
+              {% endfor %}
+                <div class="form"> 
+                 <div class="text">
+                  <div>{{form.username.label}}</div>
+                 </div>
+                 <div class="input" >
+                  <div class="input_ban" style="display: flex;">
+                <i class="fa fa-user"></i>
+                  {{form.username}}
+                  </div>
+                 </div>
+              </div>
+                  
+                 <div class="form">
+                  <div class="text">
+                  <div>  {{form.email.label}}</div>
+                  </div>
+                  <div class="input">
+                    <div class="input_ban" style="display: flex;">
+                    <i class="fa fa-envelope"></i>
+                  {{form.email}}
+                  </div>
+                </div>
+                 </div>
+  
+                 <div class="form">
+                     
+                 <div class="text">
+                 <div>      {{form.password1.label}}</div>
+                 </div>
+                 <div class="input">
+                  <div class="input_ban" style="display: flex;">
+                  <i class="fa fa-key"></i>
+                  {{form.password1}}
+                  </div>
+                 </div>
+                 </div>
+                  
+                <div class="form">
+                 <div class="text">
+                  <div>{{form.password2.label}}</div>
+                 </div>
+                 <div class="input">
+                  <div class="input_ban" style="display: flex;">
+                  <i class="fa fa-key"></i>
+                  {{form.password2}}
+                  
+                  </div>
+                 </div>
+                </div>
+             
+                <!-- {% if form.errors %}
+                <div class="alert alert-error">
+                  <h4>Please fix the following errors</h4>
+                  <ul>
+                    
+                      {% if field.errors %}
+                        {% for error in field.errors %}
+                          <li><a href="#id_{{ field.name }}" class="error">{{ error|escape }}</a></li>
+                        {% endfor %}
+                      {% endif %}
+               
+                  </ul>
+                  {% if form.non_field_errors %}
+                    {{ form.non_field_errors }}
+                  {% endif %}
+                </div>
+                {% else %}
+              {% endif %} -->
+              
+      
+                
+             
+              <button type="submit">Sign Up</button>
+             <div class="next">
+              <p>Already have an account</p>
+              <a href="{% url 'login' %}">Login</a>
+             </div>
+          </form>
+  
+</div>
+{% endblock content %}

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="packer">
+<div class="margin" style="padding-top: 150px;"></div>
+
+
+<div class="switch">
+    <div class="grey">
+    <div class="in1"><p style="text-align: center; font-size: 20px;">B</p></div>
+    <div class="in2"><p style="text-align: center; font-size: 20px;">W</p></div>
+</div>
+</div>
+
+
+<div class="banner">
+<div class="post_details">
+    <h2 class="subtitle">{{ post.title }}</h2>
+
+
+
+<img src="{{ post.image.url }}" alt="">
+<h5>{{ post.intro }}</h5>
+ <p style="margin-top: 30px; font-size: 18px; font-weight:normal ;">{{ post.body }}</p>
+ <div class="time" style="display: flex;">
+     <i class="far fa-clock"></i>
+     <h5 class="small">{{ post.date_added }}</h5>
+ </div>
+ 
+</div>
+</div>
+ <hr>
+
+<div class="comments" style="margin-bottom: 150px;">
+    <div class="comment_zone">
+ <h2 style=" font-family: 'Montserrat Alternates', sans-serif;">Recent Comments</h2>
+
+ {% for comment in post.comments.all %}
+ <div class="commenters">
+<div class="user" style="display:inline-flex;">
+<img src="/static/fitly/css/images/toy face1.jpg" alt="" style="width: 50px; height: 50px; border-radius: 60px;">
+<h3>{{ comment.user }}</h3>
+</div>
+<p style=" font-family: 'Montserrat Alternates', sans-serif; text-transform:capitalize;">{{ comment.content}}</p>
+<div class="time" style="display: inline-flex;">
+    <i class="far fa-clock"></i>
+<h5 class="small"> At {{ comment.date_added}}</h5>
+</div>
+<div class="thumbs">
+    <form action="{% url 'post_detail' post.slug %}">
+    <i class="fa fa-thumbs-up" style="margin: 0px 2%; "></i>
+    <i class="fa fa-thumbs-down" style="margin: 0px 2%;"></i>
+</form>
+</div>
+</div>
+<hr>
+
+{% endfor %}
+
+ <h2 style=" font-family: 'Montserrat Alternates', sans-serif;">Add New Comment</h2>
+ {% if user.is_authenticated %}
+ <form action="." method="post">
+     {% csrf_token %}
+
+     <div class="form">
+     {{ comment_form|crispy }}
+     <div class="field">
+         <div class="control">
+             <button style="width: fit-content; padding: 5px 15px;">submit</button>
+         </div>
+     </div>
+    </div>
+ </form>
+ 
+ {% else %}
+ <div>Only Registered Users Are Allowed To Drop Their Comments. <a href="{% url 'register' %}">Signup</a></div>
+ {% endif %}
+</div>
+</div>
+{% endblock content %}

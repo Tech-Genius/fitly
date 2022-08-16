@@ -1,0 +1,160 @@
+{% extends 'base.html' %} 
+{% block title %} Home {% endblock title %}
+{% load static %} 
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="packer">
+
+<div class="home_background">
+
+    <div class="home_background_text">
+        <h3>Train Like A Beast, Look Like A Beauty!</h3>
+    </div>
+
+    <div class="home_background_img"></div>
+
+</div>
+
+
+<div class="intros">
+    <div class="intro_box_holder">
+        {% for intro in intros %}
+        <div class="intro_box">
+            <img src="{{ intro.img.url }}" alt="">
+        </div>
+        
+            <div class="intro_box">
+                <h3>{{ intro.title }}</h3>
+                <p>{{ intro.content }}</p>
+                {% if user.is_authenticated %}
+                <button>Get Started</button>
+           {% else %}
+           <a href="{% url 'register' %}"><button>Get Started</button></a>
+           
+           {% endif %}
+            </div>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+
+<div class="services">
+    <div class="service_heading"><h3>Services We Provide</h3></div>
+    <div class="service_box_holder">
+        {% for service in services %}
+<div class="service_box">
+    
+    <img src="{{service.img.url}}" alt="">
+    <h3>{{service.title}}</h3>
+    <p>{{service.content}}</p>
+    <a href=""><button>Join Class</button></a>
+  
+</div>
+{% endfor %}
+    </div>
+</div>
+
+
+
+
+
+<div class="trainee">
+    <div class="trainee_heading"><h3>Our Trainees</h3></div>
+    <div class="trainee_box_holder">
+        {% for trainee in trainees %}
+<div class="trainee_box">
+    
+    <img src="{{trainee.img.url}}" alt="">
+    <h3>{{trainee.name}}</h3>
+    <p>{{trainee.title}}</p>
+    <div class="star" style="color: gold;">
+        <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    <i class="fa fa-star"></i>
+    </div>
+    
+  
+</div>
+{% endfor %}
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="test"  style="padding-bottom: 0px">
+  
+    <div class="testimonials">
+      
+      <div class="testimonial_heading">
+       
+        <h3>Testimonials</h3>
+      </div>
+     
+  
+      <div class="inside">
+        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"  style="   box-shadow: 1px 1px 3px red; background-color:lawngreen; margin: 0 10px;"></button>
+              <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2" style="   box-shadow: 1px 1px 3px red; background-color:lawngreen; margin: 0 10px;"></button>
+              <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"  style="   box-shadow: 1px 1px 3px red; background-color:lawngreen; margin:0  10px;"></button>
+              <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"  style="   box-shadow: 1px 1px 3px red; background-color:lawngreen; margin:0  10px;"></button>
+            </div>
+          
+            <div class="carousel-inner ">
+                {% for test in testimonials %}
+              <div class="carousel-item {% if forloop.first %} active{% endif %}" data-bs-interval="10000">
+                <div class="inners">
+                    <div class="innersPro">
+                     <img src="{{test.img.url}}" alt="">
+                     <span class="name">{{test.name}}</span>
+                     <p>{{test.content}}</p>
+                 </div>
+               </div>
+            
+              </div>
+         
+            {% endfor %}
+        </div>
+
+      
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"  data-bs-slide="prev">
+                <i class="fa fa-arrow-left" style="color: lawngreen;    text-shadow: 1px 1px red;"></i>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"  data-bs-slide="next">
+           
+
+<i class="fa fa-arrow-right" style="color: lawngreen;    text-shadow: 1px 1px red;"></i>
+<span class="visually-hidden">Next</span> 
+            </button>
+          </div>
+        </div>
+  
+    </div>
+  </div>
+
+
+
+  
+
+
+
+
+
+
+<!-- Danger Zone -->
+</div>
+{% endblock content %}
